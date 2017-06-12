@@ -93,6 +93,7 @@ $word = $fromEsToCz ? $phrase->getSpanish() : $phrase->getCzech();
 
 	<header>
 		Español tester
+		<a href="<?php echo $fromEsToCz ? '?' : '?es-cz'; ?>">prohodit jazyky</a>
 	</header>
 
 	<main>
