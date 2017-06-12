@@ -11,23 +11,27 @@ $fromEsToCz = isset($_GET['es-cz']);
 $success = null;
 $translatedPhrase = null;
 $translation = null;
+$help = false;
 if (isset($_POST['translation'])) {
 	$translatedPhrase = $dictionary->getPhraseById((int) $_POST['phraseId']);
+	$help = isset($_POST['help']);
 
 	$word = $fromEsToCz ? $translatedPhrase->getCzech() : $translatedPhrase->getSpanish();
 	$translation = $_POST['translation'];
 
-	$giveSomeLove = function (string $word): string {
-		$word = mb_strtolower($word, 'utf-8');
-		str_replace('ñ', 'ň', $word);
-		if (mb_substr($word, 0, 1, 'utf-8') === '¿') {
-			$word = mb_substr($word, 1, null, 'utf-8');
-		}
+	if (!$help) {
+		$giveSomeLove = function (string $word): string {
+			$word = mb_strtolower($word, 'utf-8');
+			str_replace('ñ', 'ň', $word);
+			if (mb_substr($word, 0, 1, 'utf-8') === '¿') {
+				$word = mb_substr($word, 1, null, 'utf-8');
+			}
 
-		return $word;
-	};
+			return $word;
+		};
 
-	$success = $giveSomeLove($word) === $giveSomeLove($translation);
+		$success = $giveSomeLove($word) === $giveSomeLove($translation);
+	}
 }
 
 if ($success === null || $success === true) {
@@ -69,8 +73,17 @@ $word = $fromEsToCz ? $phrase->getSpanish() : $phrase->getCzech();
 			border: black 2px solid;
 			padding: 0.1em;
 		}
-		form input[type=submit] {
+		.translate-submit {
 			font-size: 2em;
+			border-radius: 0.2em;
+		}
+		.help {
+			width: 100%;
+			text-align: center;
+			margin-top: 40px;
+		}
+		.help input {
+			font-size: 1em;
 			border-radius: 0.2em;
 		}
 		.result {
@@ -97,7 +110,15 @@ $word = $fromEsToCz ? $phrase->getSpanish() : $phrase->getCzech();
 	</header>
 
 	<main>
-		<?php if ($success === true) { ?>
+		<?php if ($help) { ?>
+			<div class="result">
+				<p>
+					<i><?php echo $translatedPhrase->getCzech() ?></i>
+					=
+					<i><?php echo $translatedPhrase->getSpanish() ?></i>
+				</p>
+			</div>
+		<?php } elseif ($success === true) { ?>
 			<div class="result">
 				<p class="muy-bien">SPRÁVNĚ !</p>
 				<p>
@@ -132,7 +153,10 @@ $word = $fromEsToCz ? $phrase->getSpanish() : $phrase->getCzech();
 				>
 			</label>
 			<input type="hidden" name="phraseId" value="<?php echo $phrase->getId(); ?>">
-			<input type="submit" value="✔">
+			<input class="translate-submit" type="submit" value="✔">
+			<div class="help">
+				<input type="submit" value="nápověda" name="help">
+			</div>
 		</form>
 	</main>
 
