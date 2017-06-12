@@ -11,7 +11,7 @@ class Dictionary
 	public function __construct(string $dictionaryFile)
 	{
 		$id = 1;
-		foreach (file(__DIR__ . '/dictionary.csv') as $row) {
+		foreach (file($dictionaryFile) as $row) {
 			[$czech, $spanish, $note] = explode(';', $row);
 			$czech = trim($czech);
 			$spanish = trim($spanish);
