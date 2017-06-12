@@ -24,7 +24,7 @@ kino;cine;
 cesta;viaje;
 dorazit;llegar;
 daleko;lejos;
-tak;pues;(jako řečový výplněk)
+tak;pues;jako řečový výplněk
 běžně;normalmente;
 něco;algo;
 ¿Hay cerveza?;Dáš si pivo?;
@@ -48,7 +48,7 @@ estudiar;učit se;
 significar;znamenat;
 přát si;desear;
 vosotros;my;
-vosotras;my;(holky)
+vosotras;my;holky
 esto;tento;
 esta;tato;
 víc;mas;
@@ -62,7 +62,7 @@ sympatický;sympátoco;
 veselý;alegre;
 unavený;cansado;
 smutný;triste;
-bohatý;rica;(jídlo)
+bohatý;rica;jídlo
 señora;paní;
 señorita;slečna;
 číšník;camarero;
@@ -74,24 +74,24 @@ slovo;palabra;
 noviny;periódico;
 časopis;revista;
 batoh;mochila;
-jazyk;idioma;(řeč)
-cvičení;ejercicio;(ve škole i fyzicky)
+jazyk;idioma;řeč
+cvičení;ejercicio;ve škole i fyzicky
 obloha;cielo;
 zataženo;nublado;
-být;ser;(stálý, dlouhodobý stav)
-jsem;soy;(stálý, dlouhodobý stav)
-jsi;eres;(stálý, dlouhodobý stav)
-je;es;(stálý, dlouhodobý stav)
-jsme;somos;(stálý, dlouhodobý stav)
-jste;sois;(stálý, dlouhodobý stav)
-jsou;son;(stálý, dlouhodobý stav)
-být;estar;(přechodný stav, nálady)
-jsem;estoy;(přechodný stav, nálady)
-jsi;estas;(přechodný stav, nálady)
-je;está;(přechodný stav, nálady)
-jsme;estamos;(přechodný stav, nálady)
-jste;estáis;(přechodný stav, nálady)
-jsou;están;(přechodný stav, nálady)
+být;ser;stálý, dlouhodobý stav
+jsem;soy;stálý, dlouhodobý stav
+jsi;eres;stálý, dlouhodobý stav
+je;es;stálý, dlouhodobý stav
+jsme;somos;stálý, dlouhodobý stav
+jste;sois;stálý, dlouhodobý stav
+jsou;son;stálý, dlouhodobý stav
+být;estar;přechodný stav, nálady
+jsem;estoy;přechodný stav, nálady
+jsi;estas;přechodný stav, nálady
+je;está;přechodný stav, nálady
+jsme;estamos;přechodný stav, nálady
+jste;estáis;přechodný stav, nálady
+jsou;están;přechodný stav, nálady
 moci;poder;
 mohu;puedo;
 můžeš;puedes;
@@ -108,13 +108,13 @@ modrá;azul;
 bílá;blanco;
 hnědá;marrón;
 fialová;violeta;
-oranžová;naranja;
+oranžová;naranja;barva
 růžová;roso;
 šedivá;gris;
 pokračovat;continuar;
 jaký;cómo;
 comer;jíst;
-tmavý (typ pleti);moreno;
+tmavý;moreno;typ pleti
 mladík;joven;
 pěkný;guapo;
 čas;tiempo;
