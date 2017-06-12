@@ -10,6 +10,7 @@ $fromEsToCz = isset($_GET['es-cz']);
 
 $success = null;
 $translatedPhrase = null;
+$translation = null;
 if (isset($_POST['translation'])) {
 	$translatedPhrase = $dictionary->getPhraseById((int) $_POST['phraseId']);
 
@@ -43,8 +44,56 @@ $word = $fromEsToCz ? $phrase->getSpanish() : $phrase->getCzech();
 <head>
 	<meta charset="utf-8">
 	<title>Español tester (How many Spanish do you have in your blood?)</title>
+	<style>
+		header {
+			width: 100%;
+			text-align: left;
+		}
+		h1 {
+			width: 100%;
+			text-align: center;
+			margin-top: 60px;
+			font-size: 3em;
+		}
+		.note {
+			width: 100%;
+			text-align: center;
+		}
+		form {
+			width: 100%;
+			text-align: center;
+			margin-top: 30px;
+		}
+		form input[type=text] {
+			font-size: 2em;
+			border: black 2px solid;
+			padding: 0.1em;
+		}
+		form input[type=submit] {
+			font-size: 2em;
+			border-radius: 0.2em;
+		}
+		.result {
+			width: 100%;
+			text-align: center;
+			margin-top: 10px;
+			font-size: 1.2em;
+		}
+		.muy-bien {
+			color: darkgreen;
+			font-weight: bold;
+		}
+		.wrong {
+			color: darkred;
+			font-weight: bold;
+		}
+	</style>
 </head>
 <body>
+
+	<header>
+		Español tester
+	</header>
 
 	<main>
 		<?php if ($success === true) { ?>
@@ -65,19 +114,26 @@ $word = $fromEsToCz ? $phrase->getSpanish() : $phrase->getCzech();
 		<h1><?php echo $word; ?></h1>
 
 		<?php if ($phrase->getNote() !== null) { ?>
-			<p><?php echo $phrase->getNote(); ?></p>
+			<p class="note">
+				<?php echo $phrase->getNote(); ?>
+			</p>
 		<?php } ?>
 
 		<form method="post">
-			<label>Překlad: <input type="text" name="translation" autocomplete="off" autofocus></label>
+			<label>
+				Překlad:
+				<input
+					type="text"
+					name="translation"
+					value="<?php if ($success === false) { echo htmlspecialchars($translation); } ?>"
+					autocomplete="off"
+					autofocus
+				>
+			</label>
 			<input type="hidden" name="phraseId" value="<?php echo $phrase->getId(); ?>">
-			<input type="submit" value="Odeslat">
+			<input type="submit" value="✔">
 		</form>
 	</main>
-
-	<footer>
-		Español tester
-	</footer>
 
 </body>
 </html>
