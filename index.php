@@ -16,21 +16,12 @@ if (isset($_POST['translation'])) {
 	$translatedPhrase = $dictionary->getPhraseById((int) $_POST['phraseId']);
 	$help = isset($_POST['help']);
 
-	$word = $fromEsToCz ? $translatedPhrase->getCzech() : $translatedPhrase->getSpanish();
-	$translation = $_POST['translation'];
-
 	if (!$help) {
-		$giveSomeLove = function (string $word): string {
-			$word = mb_strtolower($word, 'utf-8');
-			str_replace('ñ', 'ň', $word);
-			if (mb_substr($word, 0, 1, 'utf-8') === '¿') {
-				$word = mb_substr($word, 1, null, 'utf-8');
-			}
+		$translation = $_POST['translation'];
 
-			return $word;
-		};
-
-		$success = $giveSomeLove($word) === $giveSomeLove($translation);
+		$success = $fromEsToCz
+			? $dictionary->isTranslationFromEsToCzRight($translatedPhrase, $translation, false)
+			: $dictionary->isTranslationFromCzToEsRight($translatedPhrase, $translation, false);
 	}
 }
 
