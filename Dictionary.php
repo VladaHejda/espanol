@@ -33,15 +33,16 @@ class Dictionary
 			throw new EverythingTranslatedException();
 		}
 
-		do {
-			$randomId = array_rand($this->phrases);
-		} while (
-			in_array($randomId, $excludeIds)
-			|| (
-				count($excludeIds) < (count($this->phrases) - 1)
-				&& $randomId === $lastId
-			)
-		);
+		if ($lastId !== null) {
+			$excludeIds[] = $lastId;
+		}
+
+		$sourcePhrases = array_values(array_diff(array_keys($this->phrases), $excludeIds));
+		if (count($sourcePhrases) === 0) {
+			return $this->phrases[$lastId];
+		}
+
+		$randomId = $sourcePhrases[mt_rand(0, count($sourcePhrases) - 1)];
 
 		return $this->phrases[$randomId];
 	}
