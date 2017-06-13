@@ -47,7 +47,7 @@ $word = $fromEsToCz ? $phrase->getSpanish() : $phrase->getCzech();
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Español tester (How many Spanish do you have in your blood?)</title>
+	<title>Español tester (How many spanish do you have in your blood?)</title>
 	<style>
 		header {
 			width: 100%;
