@@ -22,9 +22,21 @@ class Dictionary
 		}
 	}
 
-	public function getRandomPhrase(): Phrase
+	/**
+	 * @param int[] $excludeIds
+	 * @return Phrase
+	 */
+	public function getRandomPhrase(array $excludeIds = []): Phrase
 	{
-		return $this->phrases[array_rand($this->phrases)];
+		if (count($excludeIds) === count($this->phrases)) {
+			throw new EverythingTranslatedException();
+		}
+
+		do {
+			$randomId = array_rand($this->phrases);
+		} while (in_array($randomId, $excludeIds));
+
+		return $this->phrases[$randomId];
 	}
 
 	public function getPhraseById(int $id): Phrase

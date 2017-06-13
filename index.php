@@ -1,17 +1,26 @@
 <?php declare(strict_types = 1);
 
 use Vlada\Dictionary;
+use Vlada\EverythingTranslatedException;
 
 require_once __DIR__ . '/Dictionary.php';
 require_once __DIR__ . '/Phrase.php';
+require_once __DIR__ . '/EverythingTranslatedException.php';
 
 $dictionary = new Dictionary(__DIR__ . '/dictionary.csv');
 $fromEsToCz = isset($_GET['es-cz']);
+
+session_start();
+if (!isset($_SESSION['translatedIds'])) {
+	$_SESSION['translatedIds'] = [];
+}
 
 $success = null;
 $translatedPhrase = null;
 $translation = null;
 $help = false;
+$congrats = false;
+
 if (isset($_POST['translation'])) {
 	$translatedPhrase = $dictionary->getPhraseById((int) $_POST['phraseId']);
 	$help = isset($_POST['help']);
@@ -22,11 +31,21 @@ if (isset($_POST['translation'])) {
 		$success = $fromEsToCz
 			? $dictionary->isTranslationFromEsToCzRight($translatedPhrase, $translation, false)
 			: $dictionary->isTranslationFromCzToEsRight($translatedPhrase, $translation, false);
+
+		if ($success) {
+			$_SESSION['translatedIds'][$translatedPhrase->getId()] = true;
+		}
 	}
 }
 
 if ($success === null || $success === true) {
-	$phrase = $dictionary->getRandomPhrase();
+	try {
+		$phrase = $dictionary->getRandomPhrase(array_keys($_SESSION['translatedIds']));
+	} catch (EverythingTranslatedException $e) {
+		$_SESSION['translatedIds'] = [];
+		$phrase = $dictionary->getRandomPhrase();
+		$congrats = true;
+	}
 } else {
 	$phrase = $translatedPhrase;
 }
@@ -91,6 +110,10 @@ $word = $fromEsToCz ? $phrase->getSpanish() : $phrase->getCzech();
 			color: darkred;
 			font-weight: bold;
 		}
+		.congrats {
+			color: darkviolet;
+			font-weight: bold;
+		}
 	</style>
 </head>
 <body>
@@ -118,6 +141,13 @@ $word = $fromEsToCz ? $phrase->getSpanish() : $phrase->getCzech();
 					<i><?php echo $translatedPhrase->getSpanish() ?></i>
 				</p>
 			</div>
+
+			<?php if ($congrats) { ?>
+				<div class="result">
+					<p class="congrats">Dnes jsi přeložil již všechna slovíčka. Gratuluji!</p>
+				</div>
+			<?php } ?>
+
 		<?php } elseif ($success === false) { ?>
 			<div class="result">
 				<p class="wrong">ŠPATNĚ</p>
