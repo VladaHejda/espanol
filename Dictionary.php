@@ -23,10 +23,11 @@ class Dictionary
 	}
 
 	/**
+	 * @param int|null $lastId
 	 * @param int[] $excludeIds
 	 * @return Phrase
 	 */
-	public function getRandomPhrase(array $excludeIds = []): Phrase
+	public function getRandomPhrase(?int $lastId = null, array $excludeIds = []): Phrase
 	{
 		if (count($excludeIds) === count($this->phrases)) {
 			throw new EverythingTranslatedException();
@@ -34,7 +35,13 @@ class Dictionary
 
 		do {
 			$randomId = array_rand($this->phrases);
-		} while (in_array($randomId, $excludeIds));
+		} while (
+			in_array($randomId, $excludeIds)
+			|| (
+				count($excludeIds) < (count($this->phrases) - 1)
+				&& $randomId === $lastId
+			)
+		);
 
 		return $this->phrases[$randomId];
 	}

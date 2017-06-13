@@ -40,10 +40,13 @@ if (isset($_POST['translation'])) {
 
 if ($success === null || $success === true) {
 	try {
-		$phrase = $dictionary->getRandomPhrase(array_keys($_SESSION['translatedIds']));
+		$phrase = $dictionary->getRandomPhrase(
+			$translatedPhrase !== null ? $translatedPhrase->getId() : null,
+			array_keys($_SESSION['translatedIds'])
+		);
 	} catch (EverythingTranslatedException $e) {
 		$_SESSION['translatedIds'] = [];
-		$phrase = $dictionary->getRandomPhrase();
+		$phrase = $dictionary->getRandomPhrase($translatedPhrase->getId());
 		$congrats = true;
 	}
 } else {
