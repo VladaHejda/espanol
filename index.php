@@ -133,6 +133,7 @@ $word = $fromEsToCz ? $phrase->getSpanish() : $phrase->getCzech();
 					<i><?php echo $translatedPhrase->getCzech() ?></i>
 					=
 					<i><?php echo $translatedPhrase->getSpanish() ?></i>
+					<?php if ($translatedPhrase->getNote() !== null) { ?>(<?php echo $translatedPhrase->getNote() ?>)<?php } ?>
 				</p>
 			</div>
 		<?php } elseif ($success === true) { ?>
@@ -142,6 +143,7 @@ $word = $fromEsToCz ? $phrase->getSpanish() : $phrase->getCzech();
 					<i><?php echo $translatedPhrase->getCzech() ?></i>
 					=
 					<i><?php echo $translatedPhrase->getSpanish() ?></i>
+					<?php if ($translatedPhrase->getNote() !== null) { ?>(<?php echo $translatedPhrase->getNote() ?>)<?php } ?>
 				</p>
 			</div>
 
