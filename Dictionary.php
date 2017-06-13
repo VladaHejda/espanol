@@ -12,7 +12,7 @@ class Dictionary
 	{
 		$id = 1;
 		foreach (file($dictionaryFile) as $row) {
-			[$czech, $spanish, $note] = explode(';', $row);
+			list ($czech, $spanish, $note) = explode(';', $row);
 			$czech = trim($czech);
 			$spanish = trim($spanish);
 			$note = trim($note);
@@ -27,7 +27,7 @@ class Dictionary
 	 * @param int[] $excludeIds
 	 * @return Phrase
 	 */
-	public function getRandomPhrase(?int $lastId = null, array $excludeIds = []): Phrase
+	public function getRandomPhrase(int $lastId = null, array $excludeIds = []): Phrase
 	{
 		if (count($excludeIds) === count($this->phrases)) {
 			throw new EverythingTranslatedException();

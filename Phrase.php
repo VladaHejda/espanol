@@ -17,7 +17,7 @@ class Phrase
 	/** @var string|null */
 	private $note;
 
-	public function __construct(int $id, string $czech, string $spanish, ?string $note)
+	public function __construct(int $id, string $czech, string $spanish, string $note = null)
 	{
 		$this->id = $id;
 		$this->czech = $czech;
@@ -40,7 +40,7 @@ class Phrase
 		return $this->spanish;
 	}
 
-	public function getNote(): ?string
+	public function getNote()
 	{
 		return $this->note;
 	}
