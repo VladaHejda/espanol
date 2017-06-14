@@ -3,7 +3,8 @@ k;a;předložka
 v;en;předložka
 v čem;en que;
 ale;pero;
-do;hasta;
+do;hasta;předlożka
+s;con;předlożka
 ani;ni;spojka
 dnes;hoy;
 včera;ayer;
@@ -12,6 +13,7 @@ den;día;
 tarde;večer;
 teď;ahora;
 medio;půl;
+cuarto;čtvrt;
 menos;mínus;
 vždycky;siempre;
 později;luego;
@@ -47,10 +49,8 @@ jdou;van;
 estudiar;učit se;
 significar;znamenat;
 přát si;desear;
-nosotros;my;
-nosotras;my;holky
-esto;tento;
-esta;tato;
+tento;esto;
+tato;esta;
 špatný;mal;
 nadšený;encantador;
 blond;rubia;
@@ -200,3 +200,45 @@ chlapec;muchacho;
 98;noventa y ocho;
 99;noventa y nueve;
 100;ciento;
+já;yo;
+ty;tu;
+on;el;
+ona;ella;
+nosotros;my;
+nosotras;my;holky
+vy;vosotros;
+oni;ellos;
+ony;ellas;
+žiju;vivo;
+žiješ;vives;
+žije;vive;
+žijeme;vivimos;
+žijete;vivís;
+žijou;viven;
+mít;tener;
+mám;tengo;
+máš;tienes;
+má;tiene;sloveso
+máme;tenemos;
+máte;tenéis;
+mají;tienen;
+dělat;hacer;
+dělám;hago;
+dělás;haces;
+dělá;hacen;
+děláme;hacemos;
+děláte;hacéis;
+dělají;hacen;
+hledat;buscar;
+stůl;mesa;
+letadlo;avión;
+nápoj;bebida;
+student;estudiante;
+šéf;jefe;
+mince;moneda;
+loď;barco;
+tužka;lápiz;
+mapa;mapa;
+Čech;checo;
+proč;porqué;
+protože;porque;
